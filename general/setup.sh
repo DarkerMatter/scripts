@@ -46,7 +46,6 @@ sudo bash -c "cat > /etc/ssh/sshd_config" << 'EOF'
 # Disable root login and password authentication
 PermitRootLogin no
 PasswordAuthentication no
-PubkeyAuthentication yes
 EOF
 
 # Restart SSH service
