@@ -24,8 +24,11 @@ adduser --disabled-password --gecos "" dimitri
 # Grant 'dimitri' sudo privileges
 usermod -aG sudo dimitri
 
-# Allow 'dimitri' to run sudo commands without a password
-echo "dimitri ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# Allow 'dimitri' to run sudo commands without a password (using sudoers.d)
+echo "dimitri ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dimitri > /dev/null
+
+# Ensure the correct permissions for the sudoers file
+sudo chmod 0440 /etc/sudoers.d/dimitri
 
 # Add the SSH public key to the new user's authorized keys
 mkdir -p /home/dimitri/.ssh
