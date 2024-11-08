@@ -38,9 +38,13 @@ chown -R dimitri:dimitri /home/dimitri/.ssh
 chmod 700 /home/dimitri/.ssh
 chmod 600 /home/dimitri/.ssh/authorized_keys
 
-# Configure SSH to allow only key authentication and restrict root login
-sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
+# Modify /etc/ssh/sshd_config to disable root login and password authentication
+sudo bash -c "cat > /etc/ssh/sshd_config" << 'EOF'
+# Disable root login and password authentication
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+EOF
 
 # Restart SSH service
 systemctl restart ssh
