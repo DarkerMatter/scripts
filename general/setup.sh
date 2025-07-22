@@ -12,7 +12,7 @@ read -p "Enter the hostname for the machine: " hostname
 hostnamectl set-hostname "$hostname"
 
 # Install required packages
-apt install -y docker.io docker-compose fail2ban ufw sudo
+apt install -y docker.io docker-compose fail2ban ufw sudo neofetch
 
 # Start and enable Docker
 systemctl start docker
@@ -71,3 +71,4 @@ systemctl restart fail2ban
 
 # Notify user
 echo "Setup complete! The user 'dimitri' has been created with sudo permissions."
+neofetch
